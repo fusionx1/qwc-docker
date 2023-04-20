@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM phusion/baseimage:focal-1.0.0
 
 
 #ADD file:a7268f82a86219801950401c224cabbdd83ef510a7c71396b25f70c2639ae4fa in /etc/apache2/sites-enabled/qgis-server.conf
