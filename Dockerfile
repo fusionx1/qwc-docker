@@ -1,34 +1,48 @@
 FROM ubuntu:22.04
 
 
-ARG URL_PREFIX=/qgis
+ADD file:a7268f82a86219801950401c224cabbdd83ef510a7c71396b25f70c2639ae4fa in /
 
 
-ARG QGIS_SERVER_LOG_LEVEL=1
+CMD ["bash"]
 
 
-#ADD file:9e2b03572405dc97aff8ac423ad202b0f4aa374427479250ab30c216c05845c4 in /etc/apache2/sites-enabled/qgis-server.conf
+ARG QEMU_ARCH
 
 
-QGIS_REPO=ubuntu QGIS_SERVER_LOG_LEVEL=1 URL_PREFIX=/ows /bin/sh -c sed -i "s!@URL_PREFIX@!$URL_PREFIX!g; s!@QGIS_SERVER_LOG_LEVEL@!$QGIS_SERVER_LOG_LEVEL!g" /etc/apache2/sites-enabled/qgis-server.conf
+COPY . /bd_build # buildkit
 
-QGIS_REPO=ubuntu QGIS_SERVER_LOG_LEVEL=1 URL_PREFIX=/ows /bin/sh -c rm /etc/apache2/sites-enabled/000-default.conf
 
-QGIS_REPO=ubuntu QGIS_SERVER_LOG_LEVEL=1 URL_PREFIX=/ows /bin/sh -c mkdir /etc/service/apache2
+RUN |1 QEMU_ARCH= /bin/sh -c /bd_build/prepare.sh && /bd_build/system_services.sh && /bd_build/utilities.sh && /bd_build/cleanup.sh # buildkit
 
-#ADD file:60df1d4adc26d4c633df4c8d655de0060de159fc340a359371eec7dd63ffdf19 in /etc/service/apache2/run
 
-QGIS_REPO=ubuntu QGIS_SERVER_LOG_LEVEL=1 URL_PREFIX=/ows /bin/sh -c chmod +x /etc/service/apache2/run
+ENV DEBIAN_FRONTEND=teletype LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
-QGIS_REPO=ubuntu QGIS_SERVER_LOG_LEVEL=1 URL_PREFIX=/ows /bin/sh -c mkdir /etc/service/dockerlog
 
-#ADD file:d9799c06f3844a1976e069a0f8f7dace7d5166bc5b259027c9b1ce95d50cb178 in /etc/service/dockerlog/run
 
-QGIS_REPO=ubuntu QGIS_SERVER_LOG_LEVEL=1 URL_PREFIX=/ows /bin/sh -c chmod +x /etc/service/dockerlog/run
+MAINTAINER Pirmin Kalberer
 
-EXPOSE 80
 
-VOLUME [/data]
+ENV LANG=en_US.UTF-8
+
+
+ENV LC_ALL=en_US.UTF-8
+
+
+ARG QGIS_REPO=ubuntu
+
+
+RUN |1 QGIS_REPO=ubuntu /bin/sh -c apt-get update && apt-get install -y fontconfig fonts-dejavu ttf-bitstream-vera fonts-liberation fonts-ubuntu && apt-get install -y xvfb && apt-get install -y apache2 libapache2-mod-fcgid && curl -L https://qgis.org/downloads/qgis-2022.gpg.key | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import && chmod a+r /etc/apt/trusted.gpg.d/qgis-archive.gpg && echo "deb https://qgis.org/$QGIS_REPO jammy main" > /etc/apt/sources.list.d/qgis.org.list && apt-get update && apt-get install -y qgis-server && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+ADD file:fb8cfc66a2cbdf9d869d8b6ad1fcd9a64199a9faebfddd2dfef06ab20eac5c82 in /usr/share/fonts/truetype/
+
+
+RUN |1 QGIS_REPO=ubuntu /bin/sh -c fc-cache -f && fc-list | sort
+
+    
+RUN |1 QGIS_REPO=ubuntu /bin/sh -c mkdir /etc/service/xvfb
+
 
 
 CMD ["/sbin/my_init","--","setuser","1000980000","bash"]
