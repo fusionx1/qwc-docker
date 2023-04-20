@@ -1,4 +1,4 @@
-FROM ubuntu:22.04, jammy, jammy-20220815, latest, rolling
+FROM ubuntu:22.04
 
 
 ARG URL_PREFIX=/qgis
