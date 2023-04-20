@@ -33,7 +33,7 @@ ENV LC_ALL=en_US.UTF-8
 ARG QGIS_REPO=ubuntu
 
 
-RUN  apt-get update && apt-get install -y fontconfig fonts-dejavu ttf-bitstream-vera fonts-liberation fonts-ubuntu && apt-get install -y xvfb && apt-get install -y apache2 libapache2-mod-fcgid && curl -L https://qgis.org/downloads/qgis-2022.gpg.key | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import && chmod a+r /etc/apt/trusted.gpg.d/qgis-archive.gpg && echo "deb https://qgis.org/$QGIS_REPO jammy main" > /etc/apt/sources.list.d/qgis.org.list && apt-get update && apt-get install -y qgis-server && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN  apt-get update && apt-get install curl gpg && apt-get install -y fontconfig fonts-dejavu ttf-bitstream-vera fonts-liberation fonts-ubuntu && apt-get install -y xvfb && apt-get install -y apache2 libapache2-mod-fcgid && curl -L https://qgis.org/downloads/qgis-2022.gpg.key | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import && chmod a+r /etc/apt/trusted.gpg.d/qgis-archive.gpg && echo "deb https://qgis.org/$QGIS_REPO jammy main" > /etc/apt/sources.list.d/qgis.org.list && apt-get update && apt-get install -y qgis-server && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 #ADD file:fb8cfc66a2cbdf9d869d8b6ad1fcd9a64199a9faebfddd2dfef06ab20eac5c82 in /usr/share/fonts/truetype/
