@@ -42,6 +42,6 @@ RUN  apt-get update && apt-get install -y curl gpg && apt-get install -y fontcon
 RUN   /bin/sh -c fc-cache -f && fc-list | sort
 
     
-RUN   mkdir /etc/service/xvfb
+#RUN   mkdir /etc/service/xvfb
 
 CMD ["/sbin/my_init","--","setuser","1000980000","bash"]
