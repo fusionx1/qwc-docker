@@ -31,7 +31,7 @@ RUN /bin/sh -c ./cleanup.sh
 
 ENV DEBIAN_FRONTEND=teletype LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
-RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+#RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # Set the environment variables for the locale
 ENV LANG=en_US.UTF-8 \
