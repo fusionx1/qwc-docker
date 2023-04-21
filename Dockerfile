@@ -63,7 +63,7 @@ USER myuser
 ENTRYPOINT ["/sbin/my_init"] 
 
 # Run the "bash" shell as user "myuser" 
-CMD ["bash"]
+CMD ["bash", "-i"]
 
 
 
