@@ -13,8 +13,9 @@ CMD ["bash"]
 
 ARG QEMU_ARCH
 
-
 COPY cleanup.sh ./cleanup.sh
+
+RUN chmod +x ./cleanup.sh
 
 RUN /bin/sh -c ./cleanup.sh
 
