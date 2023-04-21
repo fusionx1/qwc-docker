@@ -57,13 +57,13 @@ RUN   /bin/sh -c fc-cache -f && fc-list | sort
     
 #RUN   mkdir /etc/service/xvfb
 # Set the user for the following CMD instruction '
-USER myuser 
 
 # Use the my_init.sh script as the entrypoint 
 ENTRYPOINT ["/sbin/my_init"] 
 
+USER myuser
 # Run the "bash" shell as user "myuser" 
-CMD ["bash", "-i"]
+CMD ["bash", "--quiet"]
 
 
 
