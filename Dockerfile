@@ -57,7 +57,7 @@ RUN   /bin/sh -c fc-cache -f && fc-list | sort
 USER myuser 
 
 # Use the my_init.sh script as the entrypoint 
-ENTRYPOINT ["/sbin/my_init.py"] 
+ENTRYPOINT ["python3 /sbin/my_init.py"] 
 
 # Run the "bash" shell as user "myuser" 
 CMD ["bash"]
