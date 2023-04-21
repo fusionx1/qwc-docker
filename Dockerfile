@@ -29,14 +29,14 @@ RUN /bin/sh -c ./cleanup.sh
 #RUN |1 QEMU_ARCH= /bin/sh -c /bd_build/prepare.sh && /bd_build/system_services.sh && /bd_build/utilities.sh && /bd_build/cleanup.sh 
 
 
-ENV DEBIAN_FRONTEND=teletype LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
+#ENV DEBIAN_FRONTEND=teletype LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 #RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # Set the environment variables for the locale
-ENV LANG=en_US.UTF-8 \
-    LANGUAGE=en_US:en \
-    LC_ALL=en_US.UTF-8
+#ENV LANG=en_US.UTF-8 \
+#    LANGUAGE=en_US:en \
+#    LC_ALL=en_US.UTF-8
 
 MAINTAINER Pirmin Kalberer
 
