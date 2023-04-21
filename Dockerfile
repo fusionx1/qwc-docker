@@ -64,5 +64,5 @@ USER myuser
 ENTRYPOINT ["python3", "/sbin/my_init.py"] 
 
 # Run the "bash" shell as user "myuser" 
-CMD ["bash"]
+#CMD ["bash"]
 
