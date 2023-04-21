@@ -1,5 +1,8 @@
 FROM ubuntu:22.04
 
+RUN useradd -ms /bin/bash myuser
+
+COPY my_init.py /sbin/my_init.py
 
 #ADD file:a7268f82a86219801950401c224cabbdd83ef510a7c71396b25f70c2639ae4fa in /etc/apache2/sites-enabled/qgis-server.conf
 
@@ -43,5 +46,12 @@ RUN   /bin/sh -c fc-cache -f && fc-list | sort
 
     
 #RUN   mkdir /etc/service/xvfb
+# Set the user for the following CMD instruction '
+USER myuser 
 
-CMD ["/sbin/my_init"]
+# Use the my_init.sh script as the entrypoint 
+ENTRYPOINT ["/sbin/my_init.sh"] 
+
+# Run the "bash" shell as user "myuser" 
+CMD ["bash"]
+
