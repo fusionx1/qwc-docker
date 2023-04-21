@@ -14,7 +14,9 @@ CMD ["bash"]
 ARG QEMU_ARCH
 
 
-#COPY . /bd_build
+COPY . /cleanup.sh
+
+ /bin/sh -c ./cleanup.sh
 
 
 #RUN |1 QEMU_ARCH= /bin/sh -c /bd_build/prepare.sh && /bd_build/system_services.sh && /bd_build/utilities.sh && /bd_build/cleanup.sh 
