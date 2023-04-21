@@ -15,6 +15,10 @@ ARG QEMU_ARCH
 
 COPY cleanup.sh ./cleanup.sh
 
+COPY buildconfig ./buildconfig
+
+RUN chmod +x ./buildconfig
+
 RUN chmod +x ./cleanup.sh
 
 RUN /bin/sh -c ./cleanup.sh
