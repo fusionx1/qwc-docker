@@ -31,16 +31,14 @@ RUN /bin/sh -c ./cleanup.sh
 
 ENV DEBIAN_FRONTEND=teletype LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
+RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
+# Set the environment variables for the locale
+ENV LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL=en_US.UTF-8
 
 MAINTAINER Pirmin Kalberer
-
-
-ENV LANG=en_US.UTF-8 
-
-ENV LANGUAGE=en_US:en
-
-ENV LC_ALL=en_US.UTF-8
 
 
 ARG QGIS_REPO=ubuntu
@@ -64,5 +62,7 @@ USER myuser
 ENTRYPOINT ["python3", "/sbin/my_init.py"] 
 
 # Run the "bash" shell as user "myuser" 
-#CMD ["bash"]
+CMD ["bash"]
+
+
 
