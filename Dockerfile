@@ -4,6 +4,8 @@ RUN useradd -ms /bin/bash myuser
 
 COPY my_init.py /sbin/my_init.py
 
+RUN chmod +x ./sbin/my_init.py
+
 #ADD file:a7268f82a86219801950401c224cabbdd83ef510a7c71396b25f70c2639ae4fa in /etc/apache2/sites-enabled/qgis-server.conf
 
 ADD /api-gateway/nginx-example.conf /etc/apache2/sites-enabled/qgis-server.conf
