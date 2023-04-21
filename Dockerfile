@@ -63,7 +63,7 @@ ENTRYPOINT ["/sbin/my_init"]
 
 USER myuser
 # Run the "bash" shell as user "myuser" 
-CMD ["bash", "--enable-insecure-key"]
+CMD ["bash"]
 
 
 
