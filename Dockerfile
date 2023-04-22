@@ -60,7 +60,7 @@ RUN   /bin/sh -c fc-cache -f && fc-list | sort
     
 #RUN   mkdir /etc/service/xvfb
 # Set the user for the following CMD instruction '
-
+RUN whoami
 # Use the my_init.sh script as the entrypoint 
 #ENTRYPOINT ["/sbin/my_init"] 
 CMD ["/sbin/my_init","--","setuser","app","bash"]
