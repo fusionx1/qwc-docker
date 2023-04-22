@@ -25,6 +25,8 @@ RUN chmod +x ./cleanup.sh
 
 RUN /bin/sh -c ./cleanup.sh
 
+RUN chmod 755 /etc/container_environment
+RUN chmod 644 /etc/container_environment.sh /etc/container_environment.json
 
 #RUN |1 QEMU_ARCH= /bin/sh -c /bd_build/prepare.sh && /bd_build/system_services.sh && /bd_build/utilities.sh && /bd_build/cleanup.sh 
 
@@ -59,11 +61,12 @@ RUN   /bin/sh -c fc-cache -f && fc-list | sort
 # Set the user for the following CMD instruction '
 
 # Use the my_init.sh script as the entrypoint 
-ENTRYPOINT ["/sbin/my_init"] 
+#ENTRYPOINT ["/sbin/my_init"] 
+CMD ["/sbin/my_init","--","setuser","app","bash"]
 
-USER myuser
+#USER myuser
 # Run the "bash" shell as user "myuser" 
-CMD ["bash"]
+#CMD ["bash"]
 
 
 
