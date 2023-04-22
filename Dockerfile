@@ -63,11 +63,11 @@ RUN   /bin/sh -c fc-cache -f && fc-list | sort
 RUN whoami
 # Use the my_init.sh script as the entrypoint 
 #ENTRYPOINT ["/sbin/my_init"] 
-CMD ["/sbin/my_init","--","setuser","app","bash"]
+CMD ["/sbin/my_init"]
 
 #USER myuser
 # Run the "bash" shell as user "myuser" 
-#CMD ["bash"]
+CMD ["bash"]
 
 
 
