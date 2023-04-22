@@ -25,8 +25,9 @@ RUN chmod +x ./cleanup.sh
 
 RUN /bin/sh -c ./cleanup.sh
 
+RUN mkdir -p /etc/container_environment
 RUN chmod 755 /etc/container_environment
-RUN chmod 644 /etc/container_environment.sh /etc/container_environment.json
+#RUN chmod 644 /etc/container_environment.sh /etc/container_environment.json
 
 #RUN |1 QEMU_ARCH= /bin/sh -c /bd_build/prepare.sh && /bd_build/system_services.sh && /bd_build/utilities.sh && /bd_build/cleanup.sh 
 
