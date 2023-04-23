@@ -74,10 +74,9 @@ RUN apt-get update && apt-get install -y syslog-ng-core syslog-ng-scl
 RUN   /bin/sh -c fc-cache -f && fc-list | sort
 
 
-RUN echo "deb http://security.ubuntu.com/ubuntu focal-security main" | sudo tee /etc/apt/sources.list.d/focal-security.list
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 
-RUN apt-get update
-RUN apt-get install -y libssl1.1
+RUN dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 
     
 #RUN   mkdir /etc/service/xvfb
