@@ -62,6 +62,10 @@ RUN apt-get update && apt-get install -y runit locales
 
 RUN apt-get install -y openssh-server
 
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
+RUN dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
 RUN wget -qO - https://ose-repo.syslog-ng.com/apt/syslog-ng-ose-pub.asc | apt-key add -
 
 RUN echo "deb https://ose-repo.syslog-ng.com/apt/ stable ubuntu-focal" | tee -a /etc/apt/sources.list.d/syslog-ng-ose.list
@@ -74,9 +78,6 @@ RUN apt-get update && apt-get install -y syslog-ng-core syslog-ng-scl
 RUN   /bin/sh -c fc-cache -f && fc-list | sort
 
 
-RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
-
-RUN dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 
     
 #RUN   mkdir /etc/service/xvfb
