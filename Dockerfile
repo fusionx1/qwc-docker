@@ -6,6 +6,14 @@ COPY my_init.py /sbin/my_init
 
 RUN chmod +x ./sbin/my_init
 
+COPY 00_regen_ssh_host_keys.sh /etc/my_init.d/00_regen_ssh_host_keys.sh
+
+RUN chmod +x /etc/my_init.d/00_regen_ssh_host_keys.sh
+
+COPY 10_syslog-ng.init /etc/my_init.d/10_syslog-ng.init
+
+RUN chmod +x /etc/my_init.d/10_syslog-ng.init
+
 #ADD file:a7268f82a86219801950401c224cabbdd83ef510a7c71396b25f70c2639ae4fa in /etc/apache2/sites-enabled/qgis-server.conf
 
 ADD /api-gateway/nginx-example.conf /etc/apache2/sites-enabled/qgis-server.conf
