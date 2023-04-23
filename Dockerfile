@@ -73,6 +73,12 @@ RUN apt-get update && apt-get install -y syslog-ng-core syslog-ng-scl
 
 RUN   /bin/sh -c fc-cache -f && fc-list | sort
 
+
+RUN echo "deb http://security.ubuntu.com/ubuntu focal-security main" | sudo tee /etc/apt/sources.list.d/focal-security.list
+
+RUN apt-get update
+RUN apt-get install -y libssl1.1
+
     
 #RUN   mkdir /etc/service/xvfb
 # Set the user for the following CMD instruction '
