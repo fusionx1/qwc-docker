@@ -60,7 +60,7 @@ RUN apt-get update && apt-get install -y curl gpg && apt-get install -y fontconf
 
 RUN apt-get update && apt-get install -y runit locales
 
-RUN apt-get install openssh-server
+RUN apt-get install -y openssh-server
 
 #ADD file:fb8cfc66a2cbdf9d869d8b6ad1fcd9a64199a9faebfddd2dfef06ab20eac5c82 in /usr/share/fonts/truetype/
 
