@@ -62,9 +62,9 @@ RUN apt-get update && apt-get install -y runit locales
 
 RUN apt-get install -y openssh-server
 
-RUN wget -qO - https://ose-repo.syslog-ng.com/apt/syslog-ng-ose-pub.asc | sudo apt-key add -
+RUN wget -qO - https://ose-repo.syslog-ng.com/apt/syslog-ng-ose-pub.asc | apt-key add -
 
-RUN echo "deb https://ose-repo.syslog-ng.com/apt/ stable ubuntu-focal" | sudo tee -a /etc/apt/sources.list.d/syslog-ng-ose.list
+RUN echo "deb https://ose-repo.syslog-ng.com/apt/ stable ubuntu-focal" | tee -a /etc/apt/sources.list.d/syslog-ng-ose.list
 
 RUN apt-get update && apt-get install -y syslog-ng-core syslog-ng-scl
 
