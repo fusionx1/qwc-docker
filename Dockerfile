@@ -63,7 +63,11 @@ RUN   /bin/sh -c fc-cache -f && fc-list | sort
 RUN whoami
 # Use the my_init.sh script as the entrypoint 
 #ENTRYPOINT ["/sbin/my_init"] 
-CMD ["/sbin/my_init"]
+
+RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
+RUN /etc/my_init.d/10_syslog-ng.init
+
+#CMD ["/sbin/my_init"]
 
 #USER myuser
 # Run the "bash" shell as user "myuser" 
